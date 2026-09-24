@@ -8,6 +8,10 @@
     "openMenu": "Abrir menú",
     "closeMenu": "Cerrar menú"
   },
+  "SpeakersPage": {
+    "heading": "Ponentes",
+    "subheading": "Todos los ponentes y sus sesiones en React Alicante."
+  },
   "Hero": {
     "heading": "Guía de la conferencia React Alicante",
     "line1": "Tu agenda, tus sesiones —",

@@ -6,7 +6,7 @@ import {
 } from "@/components/atoms/card";
 import { Link } from "@/i18n/navigation";
 import type { Session } from "@/types/session";
-import { Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 
 export interface SpeakerCardProps {
   speaker: string;
@@ -20,27 +20,41 @@ export function SpeakerCard({ speaker, sessions }: SpeakerCardProps) {
         <CardTitle>{speaker}</CardTitle>
       </CardHeader>
       <CardContent>
-        <Flex direction="column" gap="2">
+        {/* as="ul" gives screen readers an item count for the session list */}
+        <Flex
+          as="ul"
+          direction="column"
+          gap="2"
+          listStyleType="none"
+          padding="0"
+          margin="0"
+        >
           {sessions.map((session) => (
-            <Link key={session.id} href={`/sessions/${session.id}`}>
-              <Flex gap="3" align="baseline">
-                <Text
-                  as="span"
-                  fontSize="sm"
-                  color="var(--text-muted)"
-                  flexShrink="0"
-                >
-                  {session.startTime}
-                </Text>
-                <Text
-                  as="span"
-                  fontSize="sm"
-                  _hover={{ textDecoration: "underline" }}
-                >
-                  {session.title}
-                </Text>
-              </Flex>
-            </Link>
+            <Box as="li" key={session.id}>
+              <Link
+                href={`/sessions/${session.id}`}
+                aria-label={`${session.title} — ${speaker} at ${session.startTime}`}
+              >
+                <Flex gap="3" align="baseline">
+                  <Text
+                    as="span"
+                    fontSize="sm"
+                    color="var(--text-muted)"
+                    flexShrink="0"
+                  >
+                    {session.startTime}
+                  </Text>
+                  <Text
+                    as="span"
+                    fontSize="sm"
+                    _hover={{ textDecoration: "underline" }}
+                    _focusVisible={{ textDecoration: "underline" }}
+                  >
+                    {session.title}
+                  </Text>
+                </Flex>
+              </Link>
+            </Box>
           ))}
         </Flex>
       </CardContent>

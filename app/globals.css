@@ -7,7 +7,7 @@
 
   --text-primary: #e4e7ee;
   --text-secondary: #a6adbd;
-  --text-muted: #6b7280;
+  --text-muted: #9ca3af;
 
   --accent-hex: #7c5cff;
   --accent-muted: #a78bfa;
@@ -28,9 +28,33 @@
 
   --text-primary: #1a1d29;
   --text-secondary: #4b5266;
-  --text-muted: #8b92a3;
+  --text-muted: #4b5566;
 
   --accent-hex: #6d4aff;
+}
+
+/* Skip-navigation link — hidden until focused by keyboard users */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 1rem;
+  z-index: 9999;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  background: var(--background-hex);
+  color: var(--text-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  width: auto;
+  height: auto;
+  overflow: visible;
 }
 
 * {
