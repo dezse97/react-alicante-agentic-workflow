@@ -32,7 +32,12 @@ const VARIANT_CSS: Record<BadgeVariant, ChakraBadgeProps["css"]> = {
   outline: {
     background: "transparent",
     color: "var(--text-primary)",
-    borderColor: "var(--card-border-hex)",
+    // `--card-border-hex` (used for subtle dividers elsewhere) is too low
+    // contrast (~1.1-1.3:1) for a badge's boundary, which needs to meet
+    // WCAG 1.4.11 Non-Text Contrast (3:1). `--text-secondary` is already
+    // audited for text contrast against both theme backgrounds, so it's
+    // comfortably above that floor too.
+    borderColor: "var(--text-secondary)",
   },
 };
 
