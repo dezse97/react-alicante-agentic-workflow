@@ -25,10 +25,11 @@ describe("SessionBlock", () => {
     expect(screen.getByText("09:00 · Marta Fernandez")).toBeInTheDocument();
   });
 
-  it("shows the level", () => {
+  it("shows the level, labeled for assistive tech", () => {
     render(<SessionBlock session={session} top={0} height={72} />);
 
-    expect(screen.getByText("beginner")).toBeInTheDocument();
+    expect(screen.getByText("Beginner")).toBeInTheDocument();
+    expect(screen.getByText("Level:", { exact: false })).toBeInTheDocument();
   });
 
   it("links to the session page", () => {

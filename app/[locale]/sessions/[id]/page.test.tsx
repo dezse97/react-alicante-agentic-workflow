@@ -11,6 +11,28 @@ vi.mock("@/services/sessions", () => ({
   fetchSessionById: vi.fn(),
 }));
 
+// `next-intl/server`'s real `getTranslations` resolves to a stub that throws
+// "not supported in Client Components" under Vitest's jsdom environment (it
+// picks the package's client conditional export, not the RSC one). Mock it
+// against the real message catalogue instead of hand-typed strings, so this
+// stays in sync with messages/en.json rather than drifting from it.
+vi.mock("next-intl/server", () => ({
+  getTranslations: vi.fn(async (namespace: string) => {
+    const { default: messages } = await import("@/messages/en.json");
+    const dict = (messages as Record<string, unknown>)[namespace] as Record<
+      string,
+      unknown
+    >;
+    return (key: string) =>
+      key
+        .split(".")
+        .reduce<unknown>(
+          (value, part) => (value as Record<string, unknown>)[part],
+          dict,
+        ) as string;
+  }),
+}));
+
 vi.mock("next/navigation", async (importOriginal) => {
   const actual = await importOriginal<typeof import("next/navigation")>();
   return {
@@ -43,7 +65,9 @@ describe("SessionDetailPage", () => {
     render(ui);
 
     expect(screen.getByText("React")).toBeInTheDocument();
-    expect(screen.getByText("beginner")).toBeInTheDocument();
+    expect(screen.getByText("Track:", { exact: false })).toBeInTheDocument();
+    expect(screen.getByText("Beginner")).toBeInTheDocument();
+    expect(screen.getByText("Level:", { exact: false })).toBeInTheDocument();
     expect(screen.getByText("Opening Keynote")).toBeInTheDocument();
     expect(screen.getByText("Marta Fernandez")).toBeInTheDocument();
   });

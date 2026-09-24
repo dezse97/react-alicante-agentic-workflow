@@ -16,5 +16,14 @@
     "heading": "Guía de la conferencia React Alicante",
     "line1": "Tu agenda, tus sesiones —",
     "line2": "en un solo lugar"
+  },
+  "Sessions": {
+    "trackLabel": "Track",
+    "levelLabel": "Nivel",
+    "level": {
+      "beginner": "Principiante",
+      "intermediate": "Intermedio",
+      "advanced": "Avanzado"
+    }
   }
 }
