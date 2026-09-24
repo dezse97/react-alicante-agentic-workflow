@@ -1,5 +1,33 @@
 # Changelog
 
+## [0.4.0] — 2026-09-24
+
+### Features
+
+- Show each session's level (#5) — surfaces the new `level` badge
+  (beginner/intermediate/advanced) next to the track badge on the session
+  detail page and in the schedule timeline; adds accessibility labeling and
+  contrast fixes for both badges, and translates the level value (Issue #2)
+- Add /speakers page listing all speakers and their sessions (#4) — new
+  `/speakers` route with `SpeakerCard`, a `groupSessionsBySpeaker` util,
+  nav link, and a WCAG 2.1 AA accessibility pass (skip link, contrast,
+  heading hierarchy, aria-labels) (Issue #1)
+
+### Other
+
+- Trigger a preview
+
+## Test Suite
+
+| Suite          | Status     |
+| -------------- | ---------- |
+| ESLint         | ⏳ pending |
+| Type-check     | ⏳ pending |
+| Unit tests     | ⏳ pending |
+| Build (Vercel) | ⏳ pending |
+
+CI: pending — will run once the release branch is pushed
+
 ## [0.3.1] — 2026-09-24
 
 ### Bug Fixes
