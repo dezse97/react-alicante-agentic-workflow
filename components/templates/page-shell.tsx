@@ -7,10 +7,16 @@ import type { ReactNode } from "react";
 export function PageShell({ children }: { children: ReactNode }) {
   return (
     <Flex as="main" direction="column" align="center" minHeight="100vh">
+      {/* Skip link — first focusable element; hidden off-screen, revealed on :focus */}
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+
       <Flex direction="column" align="center" gap="20" flex="1" width="full">
         <SiteNav />
 
         <Flex
+          id="main-content"
           direction="column"
           gap="20"
           flex="1"
